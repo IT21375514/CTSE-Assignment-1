@@ -1,0 +1,18 @@
+{
+  "Name": "AppObserver",
+  "IsCustom": true,
+  "Description": "Can read logs, app metadata, metrics, and alerts. No write or deploy access.",
+  "Actions": [
+    "Microsoft.Insights/logs/read",
+    "Microsoft.Web/sites/read",
+    "Microsoft.Insights/metrics/read",
+    "Microsoft.Insights/eventtypes/values/read",
+    "Microsoft.AlertsManagement/alerts/read"
+  ],
+  "NotActions": [],
+  "DataActions": [],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/5de1e5dd-cf3c-4463-9cbe-c85af61714d5"
+  ]
+}
