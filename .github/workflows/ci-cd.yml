@@ -31,7 +31,6 @@ jobs:
       # --- Run Snyk Test (non-blocking) ---
       - name: Run Snyk vulnerability scan
         run: snyk test
-        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
