@@ -30,8 +30,18 @@ jobs:
 
       # --- Run Snyk Test (non-blocking) ---
       - name: Run Snyk vulnerability scan
-        run: snyk test
-        continue-on-error: true
+        run: |
+          snyk test --json > snyk-results.json
+          cat snyk-results.json
+
+          high_count=$(jq '[.vulnerabilities[] | select(.severity=="high" or .severity=="critical")] | length' snyk-results.json)
+
+          if [ "$high_count" -gt 0 ]; then
+            echo "❌ High/critical severity vulnerabilities found: $high_count"
+            exit 1
+          else
+            echo "✅ No high/critical severity issues found. Continuing..."
+          fi
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
