@@ -1,11 +1,3 @@
-const { AzureMonitorOpenTelemetry } = require('@azure/monitor-opentelemetry');
-
-new AzureMonitorOpenTelemetry({
-  azureMonitorExporterOptions: {
-    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING
-  }
-});
-
 const express = require("express");
 const cors = require("cors");
 const databaseConnection = require("./config/dbConnection");
@@ -13,6 +5,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8090;
+
+// Import and initialize Azure Monitor for OpenTelemetry
+const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
+
+useAzureMonitor();
 
 app.use(express.json());
 app.use(
@@ -26,7 +23,7 @@ app.use("/api/users", require("./routes/userRoutes"));
 
 // Optional root route - will only match "/"
 app.get("/", (req, res) => {
-  res.json("Hello Hi World!! Api is Calling You =)");
+  res.json("Hello Hi Hi World!! Api is Calling You =)");
 });
 
 // Catch-all for undefined routes (optional but recommended)
