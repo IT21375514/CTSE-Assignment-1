@@ -1,3 +1,11 @@
+const { AzureMonitorOpenTelemetry } = require('@azure/monitor-opentelemetry');
+
+new AzureMonitorOpenTelemetry({
+  azureMonitorExporterOptions: {
+    connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING
+  }
+});
+
 const express = require("express");
 const cors = require("cors");
 const databaseConnection = require("./config/dbConnection");
@@ -18,7 +26,7 @@ app.use("/api/users", require("./routes/userRoutes"));
 
 // Optional root route - will only match "/"
 app.get("/", (req, res) => {
-  res.json("Hello World!! Api is Calling You =)");
+  res.json("Hello Hi World!! Api is Calling You =)");
 });
 
 // Catch-all for undefined routes (optional but recommended)
