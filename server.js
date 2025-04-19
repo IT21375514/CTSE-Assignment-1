@@ -23,7 +23,7 @@ app.use("/api/users", require("./routes/userRoutes"));
 
 // Optional root route - will only match "/"
 app.get("/", (req, res) => {
-  res.json("Hello World!! Api is Calling You =)");
+  res.json("Hello Demo World!! Api is Calling You =)");
 });
 
 // Catch-all for undefined routes (optional but recommended)
