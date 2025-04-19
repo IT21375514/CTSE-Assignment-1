@@ -24,7 +24,7 @@ jobs:
       - name: Set up Snyk CLI
         uses: snyk/actions/setup@0.4.0
         with:
-          snyk-version: latest
+          version: latest
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
@@ -48,6 +48,11 @@ jobs:
           push: true
           tags: index.docker.io/${{ secrets.DOCKER_USERNAME }}/ctseassignment1:${{ github.sha }}
           file: ./Dockerfile
+
+      - name: Snyk scan for Docker image
+        run: snyk container test index.docker.io/${{ secrets.DOCKER_USERNAME }}/ctseassignment1:${{ github.sha }} --file=Dockerfile
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
 
   deploy:
     runs-on: ubuntu-latest
